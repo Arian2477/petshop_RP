@@ -21,5 +21,6 @@ urlpatterns = [
     path('RP_admins/', admin.site.urls),
     path('', include('pages.urls')),
     path('accounts/', include('allauth.urls')),
+    path('products/', include('products.urls')),
     path("__debug__/", include("debug_toolbar.urls")),
 ]
