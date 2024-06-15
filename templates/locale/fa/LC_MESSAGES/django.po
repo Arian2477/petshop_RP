@@ -1,0 +1,372 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-08 01:42-0800\n"
+"PO-Revision-Date: 2024-06-08 01:43+0330\n"
+"Last-Translator: بشب یسببسشیب <arian.rj7724@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Translated-Using: django-rosetta 0.10.0\n"
+
+#: .\_base.html:60
+msgid "Wellcome"
+msgstr "خوش آمدید"
+
+#: .\_base.html:63
+msgid "Account"
+msgstr "حساب کاربری من"
+
+#: .\_base.html:66
+msgid "Log out"
+msgstr "خروج"
+
+#: .\_base.html:69
+msgid "Log in"
+msgstr "ورود"
+
+#: .\_base.html:72
+msgid "Sign up"
+msgstr "عضویت"
+
+#: .\_base.html:85 .\_base.html:179 .\_base.html:201 .\home.html:270
+msgid "About us"
+msgstr "درباره ما"
+
+#: .\_base.html:92 .\_base.html:147 .\home.html:170
+msgid "Products"
+msgstr "محصولات"
+
+#: .\_base.html:97 .\_base.html:169 .\_base.html:191
+msgid "Dogs"
+msgstr "سگ"
+
+#: .\_base.html:100
+msgid "All dogs"
+msgstr "سگ"
+
+#: .\_base.html:109 .\_base.html:170 .\_base.html:192
+msgid "Cats"
+msgstr "گربه"
+
+#: .\_base.html:112
+msgid "All Cats"
+msgstr "گربه"
+
+#: .\_base.html:143
+msgid "Pet Shop"
+msgstr "پت شاپ"
+
+#: .\_base.html:145
+msgid "High quality items created by our global community."
+msgstr "اجناس با کیفیت، تضمین پت شاپ ما"
+
+#: .\_base.html:148
+msgid "original"
+msgstr "اورجینال"
+
+#: .\_base.html:150
+msgid "respect"
+msgstr "احترام"
+
+#: .\_base.html:151
+msgid "Members"
+msgstr "به مشتری"
+
+#: .\_base.html:152
+msgid "Work"
+msgstr "کار"
+
+#: .\_base.html:153
+msgid "Fast"
+msgstr "سریع"
+
+#: .\_base.html:166 .\_base.html:189
+msgid "Categories"
+msgstr "دسته بندی ها"
+
+#: .\_base.html:176 .\_base.html:198
+msgid "Contact us"
+msgstr "ارتباط با ما"
+
+#: .\_base.html:180 .\_base.html:202
+msgid "our number"
+msgstr "شماره تماس ما"
+
+#: .\_base.html:181 .\_base.html:204
+msgid "Address"
+msgstr "آدرس"
+
+#: .\_base.html:217
+msgid "All rights reserved. Made by"
+msgstr "ساخته شده توسط"
+
+#: .\account\email\email_confirmation_message.txt:5
+#, fuzzy, python-format
+msgid ""
+"\n"
+"\n"
+"Hello from %(site_name)s.\n"
+"\n"
+"If you requested this email please click on the link below:\n"
+"%(activate_url)s\n"
+"\n"
+msgstr ""
+"\n"
+"سلام از طرف {site_name}.\n"
+"\n"
+"اگر شما درخواستی برای این ایمیل داشته اید، بر روی لینک زیر کلیک کنید:\n"
+"%(activate_url)\n"
+
+#: .\account\email\email_confirmation_subject.txt:3
+msgid "Please confirm email"
+msgstr "ایمیل خود را تایید کنید."
+
+#: .\account\email\password_reset_key_message.txt:4
+msgid ""
+"You're receiving this email because you or someone else has requested a password reset for your user account.\n"
+"It can be safely ignored if you did not request a password reset. Click the link below to reset your password."
+msgstr ""
+"شما این ایمیل را به علت درخواست شما یا فرد دیگری برای بازیابی رمز عبور "
+"دریافت کرده اید. اگر شما این درخواست را ندادید، امن ترین راه در نظر نگرفتن "
+"این ایمیل است. برای بازیابی رمز عبور بر روی لینک زیر کلیک کنید"
+
+#: .\account\email\password_reset_key_message.txt:9
+#, python-format
+msgid "In case you forgot, your username is %(username)s."
+msgstr "در صورت فراموشی، نام کاربری: {username}."
+
+#: .\account\email\password_reset_key_subject.txt:3
+msgid "Password Reset Email"
+msgstr "ایمیل بازیابی رمز عبور"
+
+#: .\account\email\password_reset_message.txt:4
+msgid "Your password has been reset."
+msgstr "رمز عبور شما بازیابی شد."
+
+#: .\account\email\password_reset_subject.txt:3
+#: .\account\password_reset.html:6 .\account\password_reset.html:15
+#: .\account\password_reset_done.html:6 .\account\password_reset_done.html:15
+msgid "Password Reset"
+msgstr "بازیابی رمز عبور"
+
+#: .\account\email_confirm.html:6 .\account\email_confirm.html:14
+msgid "Confirm E-mail Address"
+msgstr "ایمیل خود را تایید کنید."
+
+#: .\account\email_confirm.html:20
+#, python-format
+msgid ""
+"Please confirm that\n"
+"                                <a href=\"mailto:%(email)s\">%(email)s</a> is an e-mail address for user\n"
+"                                %(user_display)s\n"
+"                                ."
+msgstr ""
+
+#: .\account\email_confirm.html:38
+#, python-format
+msgid ""
+"This e-mail confirmation link expired or is invalid. Please\n"
+"                                <a href=\"%(email_url)s\">issue a new e-mail confirmation request</a>\n"
+"                                ."
+msgstr ""
+
+#: .\account\password_reset.html:21
+msgid ""
+"Forgotten your password? Enter your email address below, and we'll send you "
+"an email allowing you to reset it."
+msgstr ""
+"رمز عبور خود را فراموش کرده‌اید؟ ایمیل خود را در قسمت زیر وارد کنید، تا ما "
+"ایمیلی برای بازیابی رمز عبور برایتان بفرستیم."
+
+#: .\account\password_reset.html:32
+msgid "Reset My Password"
+msgstr "بازیابی رمز عبور"
+
+#: .\account\password_reset.html:38
+msgid ""
+"Please contact us if you have any trouble resetting your\n"
+"                                password."
+msgstr "در صورت هرگونه مشکل در بازیابی رمز عبور با ما تماس بگیرید."
+
+#: .\account\password_reset_done.html:22
+msgid ""
+"We have sent you an email. If you have not received it please check your\n"
+"                                spam folder. Otherwise contact us if you do not receive it in a few\n"
+"                                minutes."
+msgstr ""
+"ما برای شما ایمیلی فرستادیم. اگر آن را دریافت نکرده اید لطفاً پوشه اسپم خود "
+"را بررسی کنید. در غیر این صورت با ما تماس بگیرید."
+
+#: .\account\password_reset_from_key.html:6
+#: .\account\password_reset_from_key.html:18
+#: .\account\password_reset_from_key_done.html:5
+#: .\account\password_reset_from_key_done.html:14
+msgid "Change Password"
+msgstr "تغییر رمز عبور"
+
+#: .\account\password_reset_from_key.html:16
+msgid "Bad Token"
+msgstr "توکن بد"
+
+#: .\account\password_reset_from_key.html:24
+#, python-format
+msgid ""
+"The password reset link was invalid, possibly because it has already\n"
+"                                    been used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</a>\n"
+"                                    ."
+msgstr ""
+
+#: .\account\password_reset_from_key.html:38
+msgid "change password"
+msgstr "تغییر رمز عبور"
+
+#: .\account\password_reset_from_key_done.html:18
+msgid "Your password is now changed."
+msgstr "رمز عبور شما تغییر یافت."
+
+#: .\account\verification_sent.html:5 .\account\verification_sent.html:14
+msgid "Verify Your Email Address"
+msgstr "ایمیل خود را تایید کنید."
+
+#: .\account\verification_sent.html:18
+msgid ""
+"We have sent an email to you for verification. Follow the link provided to\n"
+"                                finalize the signup process. If you do not see the verification email in your main\n"
+"                                inbox, check your spam folder. Please contact us if you do not receive the verification\n"
+"                                email within a few minutes."
+msgstr ""
+"ما یک ایمیل برای شما برای تاییدیه ارسال کرده ایم. لینک ارائه شده را برای مراحل ثبت نام نهایی دنبال کنید. اگر ایمیل تأییدیه را درصندوق ورودی اصلی خود نمی بینید،\n"
+" پوشه اسپم خود را بررسی کنید. لطفاً در صورت عدم دریافت تأییدیه با ما تماس بگیرید."
+
+#: .\allauth\layouts\base.html:19
+msgid "Messages:"
+msgstr "پیام:"
+
+#: .\home.html:9
+msgid "Home"
+msgstr "خانه"
+
+#: .\home.html:20
+msgid "products"
+msgstr "محصولات"
+
+#: .\home.html:20
+msgid "all kind"
+msgstr "متنوع"
+
+#: .\home.html:21
+msgid "with"
+msgstr "با"
+
+#: .\home.html:22
+msgid "high quality"
+msgstr "کیفیت بالا"
+
+#: .\home.html:22
+msgid "all kind of"
+msgstr "انواع"
+
+#: .\home.html:22
+msgid "Royal canine"
+msgstr "رویال کنین"
+
+#: .\home.html:23
+msgid "&"
+msgstr "و"
+
+#: .\home.html:23
+msgid "other products"
+msgstr "محصولات دیگر"
+
+#: .\home.html:23
+msgid "soon..."
+msgstr "به زودی..."
+
+#: .\home.html:25
+msgid "experience the best quality with us. "
+msgstr "با کیفیت ترین ها را با ما تجربه کنید."
+
+#: .\home.html:35
+msgid "Search"
+msgstr "جست‌و جو"
+
+#: .\home.html:46
+msgid "Discover featured products"
+msgstr "محصولات برتر"
+
+#: .\home.html:47
+msgid "Every week we hand-pick some of the best items from our collection"
+msgstr "هر هفته محصولات برتر را به شما معرفی میکنیم."
+
+#: .\home.html:173
+msgid "All categories"
+msgstr "دسته بندی ها"
+
+#: .\home.html:191
+msgid "date of expiration"
+msgstr "تاریخ انقضا"
+
+#: .\home.html:213
+msgid "$"
+msgstr "تومان"
+
+#: .\home.html:223
+msgid "View more products"
+msgstr "محصولات بیشتر"
+
+#: .\home.html:230
+msgid "?Why our marketplace"
+msgstr "چرا ما؟"
+
+#: .\home.html:235
+msgid "Quality Guarantee"
+msgstr "گارانتی کیفیت"
+
+#: .\home.html:236
+msgid "Quality checked by our team"
+msgstr "اجناس با کیفیت تضمین تیم ماست."
+
+#: .\home.html:243
+msgid "Customer Support"
+msgstr "پشتیبانی مشتریان"
+
+#: .\home.html:244
+msgid "Friendly customer support"
+msgstr "رفتار دوستانه و پاسخگویی سریع"
+
+#: .\home.html:251
+msgid "Updates Products"
+msgstr "محصولات به روز"
+
+#: .\home.html:252
+msgid "Updates products in here"
+msgstr "به روز ترین محصولات اینجاست"
+
+#: .\home.html:259
+msgid "Secure Payments"
+msgstr "پرداخت امن"
+
+#: .\home.html:260
+msgid "We Guarantee your payments "
+msgstr "تضمین امنیت پرداخت با ما"
+
+#: .\home.html:275
+msgid "Ream more about us"
+msgstr "بیشتر درباره ما بدانید"
+
+#~ msgid "Start your search"
+#~ msgstr "جست‌و جو"
+
+#, fuzzy
+#~ msgid "Confirm"
+#~ msgstr "تایید"

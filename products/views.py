@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, reverse, render
 from django.http import HttpResponse
 from django.utils.translation import gettext as _
 from django.contrib import messages
-
+from django.db.models import F
 
 from .models import Product, Comment
 from .forms import CommentForm
@@ -12,6 +12,7 @@ from .forms import CommentForm
 class ProductListView(generic.ListView):
     # model = Product
     queryset = Product.objects.filter(active=True)
+    paginate_by = 10
     template_name = 'products/product_list.html'
     context_object_name = 'products'
 
@@ -26,7 +27,13 @@ class ProductDetailView(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['comment_form'] = CommentForm()
+        # context[''] = Product.objects
         return context
+
+    # def get_queryset(self):
+    #     query = Product.objects.all()
+    #
+    #     return query
 
 
 class CommentCreateView(generic.CreateView):
@@ -41,6 +48,6 @@ class CommentCreateView(generic.CreateView):
         product = get_object_or_404(Product, id=product_id)
         obj.product = product
 
-        # messages.success(self.request, _('Comment successfully created'))
+        messages.success(self.request, _('Comment successfully created'))
 
         return super().form_valid(form)

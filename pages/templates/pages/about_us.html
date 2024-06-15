@@ -1,0 +1,48 @@
+{% extends '_base.html' %}
+
+{% load static %}
+{% load i18n %}
+{% load jalali_tags %}
+{% load persian_translation_tags %}
+{% load humanize %}
+
+{% block title %}{% trans 'About us' %}{% endblock title %}
+
+{% block content %}
+    <main class="container-fluid px-0">
+        <!-- Row: Shop online-->
+        <section class="row g-0">
+            <div class="col-md-6 bg-position-center bg-size-cover bg-secondary"
+                 style="min-height: 15rem"><img src="{% static 'img/other/pexels-helen1-16395150.jpg' %}" alt=""></div>
+            <div class="col-md-6 px-3 px-md-5 py-5">
+                <div class="mx-auto py-lg-5" style="max-width: 35rem;">
+                    <h2 class="h3 pb-3">{% trans 'About us' %}</h2>
+                    <p class="fs-sm pb-3 text-muted">فروشگاه Micky عرضه کننده انواع محصولات پت شاپ است. شما از طریق
+                        این فروشگاه می‌توانید محصولات پت خود را مشاهده و تهیه نمایید. فروشگاه Micky در صفحات محصول
+                        خود توضیحات جامعی درباره محصولات خود در اختیار شما قرار می‌دهد و طبق شعار اجناس با کیفیت، تضمین پت شاپ ماست،
+                        حقایق را در اختیار شما می‌گذارد و این امکان را فراهم می‌سازد که آگاهانه انتخاب نمایید و در صورت
+                        تمایل به‌صورت آنلاین از طریق درگاه‌های بانکی محصولات را سفارش و خریداری نمایید.</p><a
+                        class="btn btn-primary btn-shadow"
+                        href="{% url 'products_list' %}">{% trans 'View products' %}</a>
+                </div>
+            </div>
+        </section>
+        <!-- Row: Delivery-->
+        <section class="row g-0">
+            <div class="col-md-6 bg-position-center bg-size-cover bg-secondary order-md-2"
+                 style="min-height: 15rem"><img src="{% static 'img/other/pexels-helen1-16395150.jpg' %}" alt=""></div>
+            <div class="col-md-6 px-3 px-md-5 py-5 order-md-1">
+                <div class="mx-auto py-lg-5" style="max-width: 35rem;">
+                    <h2 class="h3 pb-3">{% trans 'Contact us' %}</h2>
+                    <p class="fs-sm pb-3 text-muted">آدرس دفتر مرکزی : تهران ، خیابان نلسون ماندلا (جردن) ، روبروی ساختمان پارسیان
+                        <br>
+                        <br>
+                        شماره های تماس : 09900900301
+                    </p><a class="btn btn-accent btn-shadow" href="#">
+                    <i class="ci-instagram"></i>{% trans 'instagram' %}</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock content %}

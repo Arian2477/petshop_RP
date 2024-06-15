@@ -1,0 +1,107 @@
+{% extends '_base.html' %}
+
+{% load static %}
+{% load i18n %}
+{% load jalali_tags %}
+{% load persian_translation_tags %}
+{% load humanize %}
+
+{% block title %}cart{% endblock title %}
+
+{% block content %}
+    <!-- Page Title-->
+    <div class="page-title-overlap bg-dark pt-4">
+        <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
+            <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
+                        <li dir="ltr" class="breadcrumb-item"><a class="text-nowrap" href="{% url 'home' %}">
+                            <i class="ci-home"></i>{% trans 'Home' %}</a></li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
+                <h1 class="h3 text-light mb-0">{% trans 'Your cart' %}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="container pb-5 mb-2 mb-md-4">
+        <div class="row">
+            <!-- List of items-->
+            <section class="col-lg-8">
+                <div class="d-flex justify-content-between align-items-center pt-3 pb-4 pb-sm-5 mt-1">
+                    <h2 class="h6 text-light mb-0">{% trans 'Your Products' %}</h2>
+                    <a class="btn btn-outline-primary btn-sm ps-2" href="{% url 'products_list' %}">
+                        {% trans 'Continue shopping' %}<i class="ci-arrow-left me-2"></i></a>
+                </div>
+                {% if cart %}
+                    {% for item in cart %}
+                        <!-- Item-->
+                        <div dir="ltr" class="d-sm-flex justify-content-between align-items-center my-2 pb-3 border-bottom">
+                            <div class="d-block d-sm-flex align-items-center text-center text-sm-start">
+                                <a class="d-inline-block flex-shrink-0 mx-auto me-sm-4" href="{{ item.product_obj.get_absolute_url }}">
+                                    {% if item.product_obj.image.url %}
+                                    <img src="{{ item.product_obj.image.url }}" width="160" alt="Product">
+                                    {% endif %}
+                                </a>
+                                <div class="pt-2">
+                                    <h3 class="product-title fs-base mb-2"><a href="{{ item.product_obj.get_absolute_url }}">   {{ item.product_obj.title }}</a></h3>
+                                    <div dir="rtl" class="fs-lg text-accent pt-5">   {{ item.product_obj.price|intcomma:False|translate_number }} {% trans '$' %}</div>
+                                </div>
+                            </div>
+                            <div class="pt-2 pt-sm-0 ps-sm-3 mx-auto mx-sm-0 text-center text-sm-start"
+                                 style="max-width: 9rem;">
+
+                                <form action="{% url 'cart_add' item.product_obj.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <label class="form-label" for="quantity1">{% trans 'Quantity' %}</label>
+                                    <input class="form-control" type="number" name="quantity" id="quantity1" min="1"
+                                           max="100" value="{{ item.quantity }}">
+                                    {{ item.product_update_quantity_form.inplace }}
+                                    <button class="btn btn-link px-0 text-danger" type="submit">
+                                        <i class="ci-loading fs-sm me-2" style="color: #3e43a0"><span class="fs-lg"
+                                                                                                      style="color: #3e43a0">  {% trans 'update' %}</span></i>
+                                    </button>
+                                </form>
+                                <button class="btn btn-link px-0 text-danger" type="button">
+                                    <a href="{% url 'cart_remove' item.product_obj.id %}">
+                                        <i class="ci-close-circle fs-sm me-2"><span class="fs-base">  {% trans 'Remove' %}</span></i></a>
+                                </button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="d-sm-flex justify-content-between align-items-center my-2 pb-3 border-bottom"
+                         style="padding-left: 235px">
+                        <img src="{% static 'img/other/pexels-helen1-16395150.jpg' %}" width="360">
+                    </div>
+                {% endif %}
+                {% if cart|length %}
+                    <form action="{% url 'cart_clear' %}" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-primary btn-shadow d-block w-100 mt-4" type="submit">{% trans 'Delete cart' %}</button>
+                    </form>
+                {% endif %}
+            </section>
+            <!-- Sidebar-->
+            <aside class="col-lg-4 pt-4 pt-lg-0 ps-xl-5">
+                <div class="bg-white rounded-3 shadow-lg p-4">
+                    <div class="py-2 px-xl-2">
+                        <div class="text-center mb-4 pb-3 border-bottom">
+                            <h2 class="h6 mb-3 pb-1">{% trans 'Subtotal' %}</h2>
+                            <h3 class="fw-normal">{{ cart.get_total_price|intcomma:False|translate_number }} {% trans '$' %}</h3>
+                        </div>
+                        <div class="d-block d-sm-flex align-items-center text-center text-sm-start"><a
+                                class="d-inline-block flex-shrink-0 mx-auto me-sm-4" href="#"><img
+                                src="{% static 'img/grocery/single/01.jpg' %}" width="260"></a>
+
+                        </div>
+                        <a class="btn btn-outline-accent d-block w-100 mt-4" href="{% url 'order_create' %}">
+                            {% trans 'Proceed to Checkout' %}<i class="ci-card fs-lg me-2"></i></a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+{% endblock content %}

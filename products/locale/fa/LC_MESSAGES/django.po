@@ -1,0 +1,135 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-08 03:17-0800\n"
+"PO-Revision-Date: 2024-06-15 08:16+0330\n"
+"Last-Translator: بشب یسببسشیب <arian.rj7724@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Translated-Using: django-rosetta 0.10.0\n"
+
+#: .\models.py:48
+msgid "Product Image"
+msgstr " عکس محصولات"
+
+#: .\models.py:49
+msgid "Date of expiration"
+msgstr "تاریخ انقضا "
+
+#: .\models.py:52
+msgid "Date Time of Creation"
+msgstr "تاریخ "
+
+#: .\models.py:81
+msgid "Comment author"
+msgstr "نویسنده کامنت"
+
+#: .\models.py:82
+msgid "Comment Text"
+msgstr "متن کامنت"
+
+#: .\templates\products\product_detail.html:9
+msgid "Product"
+msgstr "محصول"
+
+#: .\templates\products\product_detail.html:19
+#: .\templates\products\product_list.html:20
+msgid "Home"
+msgstr "خانه"
+
+#: .\templates\products\product_detail.html:24
+msgid "Single Item - Buy Now"
+msgstr "محصول مورد نظر - خرید"
+
+#: .\templates\products\product_detail.html:52
+#: .\templates\products\product_list.html:75
+msgid "unavailable"
+msgstr "نا موجود"
+
+#: .\templates\products\product_detail.html:59
+#: .\templates\products\product_list.html:70
+msgid "date of expiration"
+msgstr "تاریخ انقضا "
+
+#: .\templates\products\product_detail.html:64
+msgid "Current price"
+msgstr "قیمت الان"
+
+#: .\templates\products\product_detail.html:65
+#: .\templates\products\product_list.html:98
+msgid "$"
+msgstr "تومان"
+
+#: .\templates\products\product_detail.html:74
+msgid "quantity"
+msgstr "تعداد"
+
+#: .\templates\products\product_detail.html:80
+msgid "Add to Cart"
+msgstr "اضافه به سبد خرید"
+
+#: .\templates\products\product_detail.html:91
+msgid "Product description"
+msgstr "توضیحات محصول"
+
+#: .\templates\products\product_detail.html:104
+msgid "more products"
+msgstr "محصولات بیشتر"
+
+#: .\templates\products\product_detail.html:105
+msgid "View products"
+msgstr "مشاهده محصولات"
+
+#: .\templates\products\product_detail.html:115
+msgid "Comments"
+msgstr "کامنت ها"
+
+#: .\templates\products\product_detail.html:144
+msgid "Write comment..."
+msgstr "نوشتن کامنت..."
+
+#: .\templates\products\product_detail.html:148
+msgid "Post comment"
+msgstr "ارسال کامنت"
+
+#: .\templates\products\product_list.html:10
+msgid "Products"
+msgstr "محصولات"
+
+#: .\templates\products\product_list.html:25
+msgid "All Products"
+msgstr "همه محصولات"
+
+#: .\templates\products\product_list.html:39
+msgid "Search..."
+msgstr "جست‌و جو"
+
+#: .\templates\products\product_list.html:44
+msgid "Page"
+msgstr "صفحات"
+
+#: .\templates\products\product_list.html:113
+msgid "Prev"
+msgstr "قبلی"
+
+#: .\templates\products\product_list.html:134
+msgid "Next"
+msgstr "بعدی"
+
+#: .\views.py:46
+msgid "Comment successfully created"
+msgstr "کامنت با موفقیت ساخته شد."
+
+#~ msgid "Details"
+#~ msgstr "جزییات"

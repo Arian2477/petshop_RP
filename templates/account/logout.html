@@ -1,14 +1,40 @@
 {% extends '_base.html' %}
 
+{% load static %}
+{% load i18n %}
+{% load jalali_tags %}
+{% load persian_translation_tags %}
+{% load humanize %}
+
+
 {% block page_title %}
     Logout
 {% endblock %}
 
 {% block content %}
-    <h1>Log Out</h1>
-    <h2>Are you sure you want to logout?</h2>
-    <form action="" method="post">
-        {% csrf_token %}
-        <input type="submit" value="Yes?">
-    </form>
+    <div class="container py-4 py-lg-5 my-4">
+        <div class="row">
+            <div class="">
+                <div class="card border-0 shadow">
+                    <div class="card-body">
+                        <h2 class="h4 mb-1">Are you sure you want to logout?</h2>
+                        <div class="d-inline-block align-middle"></div>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <div class="text-end pt-4">
+                                <button class="btn btn-primary" type="submit">
+                                    Yes
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
 {% endblock %}

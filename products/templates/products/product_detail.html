@@ -1,6 +1,12 @@
 {% extends '_base.html' %}
 
-{% block title %}Products{% endblock title %}
+{% load static %}
+{% load i18n %}
+{% load jalali_tags %}
+{% load persian_translation_tags %}
+{% load humanize %}
+
+{% block title %}{% trans 'Product' %}{% endblock title %}
 
 {% block content %}
     <!-- Page Title-->
@@ -9,16 +15,13 @@
             <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
-                        <li class="breadcrumb-item"><a class="text-nowrap" href="index.html"><i class="ci-home"></i>Home</a>
-                        </li>
-                        <li class="breadcrumb-item text-nowrap"><a href="home-nft.html">Marketplace</a>
-                        </li>
-                        <li class="breadcrumb-item text-nowrap active" aria-current="page">Single Project</li>
+                        <li dir="ltr" class="breadcrumb-item"><a class="text-nowrap" href="{% url 'home' %}">
+                            <i class="ci-home"></i>{% trans 'Home' %}</a></li>
                     </ol>
                 </nav>
             </div>
             <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
-                <h1 class="h3 text-light mb-0">Single Item - Buy Now</h1>
+                <h1 class="h3 text-light mb-0">{% trans 'Single Item - Buy Now' %}</h1>
             </div>
         </div>
     </div>
@@ -29,22 +32,12 @@
                 <div class="row gy-4">
                     <!-- Product image-->
                     <div class="col-lg-6">
-                        <div class="position-relative rounded-3 overflow-hidden mb-lg-4 mb-2"><img class="image-zoom"
-                                                                                                   src="img/nft/catalog/single.jpg"
-                                                                                                   data-zoom="img/nft/catalog/single.jpg"
-                                                                                                   alt="Product image">
+                        <div class="position-relative rounded-3 overflow-hidden mb-lg-4 mb-2">
+                            {% if product.image %}
+                                <img class="image-zoom" src="{{ product.image.url }}"
+                                     data-zoom="{{ product.image.url }}" alt="Product image">
+                            {% endif %}
                             <div class="image-zoom-pane"></div>
-                        </div>
-                        <div class="pt-2 text-lg-start text-center">
-                            <button class="btn btn-secondary rounded-pill btn-icon me-sm-3 me-2" type="button"
-                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Favorites"><i
-                                    class="ci-heart"></i></button>
-                            <button class="btn btn-secondary rounded-pill btn-icon me-sm-3 me-2" type="button"
-                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Share"><i
-                                    class="ci-share-alt"></i></button>
-                            <button class="btn btn-secondary rounded-pill btn-icon me-sm-3 me-2" type="button"
-                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Flag"><i
-                                    class="ci-flag"></i></button>
                         </div>
                     </div>
                     <!-- Product details-->
@@ -53,85 +46,64 @@
                             <!-- Meta-->
                             <h2 class="h3 mb-3">{{ product.title }}</h2>
                             <div class="d-flex align-items-center flex-wrap text-nowrap mb-sm-4 mb-3 fs-sm">
-                                <div class="mb-2 me-sm-3 me-2 text-muted">{{ product.datetime_modified }}</div>
-                                <div class="mb-2 me-sm-3 me-2 ps-sm-3 ps-2 border-start text-muted"><i
-                                        class="ci-eye me-1 fs-base mt-n1 align-middle"></i>15 views
-                                </div>
-                                <div class="mb-2 me-sm-3 me-2 ps-sm-3 ps-2 border-start text-muted"><i
-                                        class="ci-heart me-1 fs-base mt-n1 align-middle"></i>4 favorite
-                                </div>
+                                <div class="mb-2 me-sm-3 me-2 text-muted">
+                                    {{ product.datetime_modified|to_jalali:'%Y/%m/%d _ %H:%M:%S'|translate_number }}</div>
+                                {% if product.inventory == 0 %}
+                                    <div class="mb-2 me-sm-3 me-2 text-danger">{% trans 'unavailable' %}</div>
+                                {% endif %}
                             </div>
-                            <div class="row row-cols-sm-2 row-cols-1 gy-3 gx-4 mb-4 pb-md-2">
-                            </div>
+                            <p class="mb-4 pb-md-2 fs-sm text-muted">{{ product.subcategory }}</p>
+
+                            <div class="row row-cols-sm-2 row-cols-1 gy-3 gx-4 mb-4 pb-md-2"></div>
                             <!-- Description-->
+                            {% if product.datetime_expiration_show %}
+                                <p class="mb-4 pb-md-2 fs-sm">{% trans 'date of expiration' %}
+                                    : {{ product.datetime_expiration|to_jalali:'%Y/%m/%d'|translate_number }}</p>
+                            {% endif %}
                             <p class="mb-4 pb-md-2 fs-sm">{{ product.short_description }}</p>
                             <!-- Current price-->
                             <div class="mb-4 pb-md-2">
-                                <h3 class="h6 mb-2 fs-sm text-muted">Current price</h3>
-                                <h2 class="h3 mb-1">{{ product.price }}</h2>
+                                <h4 class="h4 mb-2 fs-sm"><b>{% trans 'Current price' %}</b>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    {% if product.discounts.all %}
+                                        {% for discount in product.discounts.all %}
+                                            <span class="text-danger"> &nbsp;{{ discount.description|translate_number }}&nbsp; </span>
+                                            </h4>
+                                            <h2 class="h3 text-decoration-line-through text-danger mb-1">{{ product.price|intcomma:False|translate_number }} {% trans '$' %}</h2>
+                                            <h2 class="h3 mb-1">{{ product.discount_price|intcomma:False|translate_number }} {% trans '$' %}</h2>
+                                        {% endfor %}
+                                    {% else %}
+                                        <h2 class="h3 mb-1">{{ product.price|intcomma:False|translate_number }} {% trans '$' %}</h2>
+
+                                    {% endif %}
                             </div>
-                            <!-- Buy-->
-                            <div class="row row-cols-sm-2 row-cols-1 g-sm-4 g-3 mb-4">
-                                <div class="col"><a class="btn btn-lg btn-accent d-block w-100" href="#">Buy now</a>
-                                </div>
-                                <div class="col"><a class="btn btn-lg btn-outline-accent d-block w-100" href="#">Favorite</a>
-                                </div>
-                            </div>
-                            <!-- Product info-->
-                            <div class="pt-3">
-                                <!-- Nav tabs-->
-                                <div class="mb-4" style="overflow-x: auto;">
-                                    <ul class="nav nav-tabs nav-fill flex-nowrap text-nowrap mb-1" role="tablist">
-                                        <li class="nav-item"><a class="nav-link active" href="#details"
-                                                                data-bs-toggle="tab" role="tab">Details</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="#properties" data-bs-toggle="tab"
-                                                                role="tab">Properties</a></li>
-                                    </ul>
-                                </div>
-                                <!-- Tabs content-->
-                                <div class="tab-content">
-                                    <!-- Details-->
-                                    <div class="tab-pane fade show active" id="details" role="tabpanel">
-                                        <ul class="list-unstyled mb-0">
-                                            <li class="d-flex flex-sm-row flex-column align-items-sm-center justify-content-between mb-2 fs-sm">
-                                                <span>Contract Address</span>
-                                                <div><a class="text-decoration-none" href="#"><span
-                                                        class="fw-medium text-body">0x1dDB2C08s97...9Ec</span><i
-                                                        class="ci-external-link ms-3 text-accent"></i></a></div>
-                                            </li>
-                                            <li class="d-flex flex-sm-row flex-column align-items-sm-center justify-content-between mb-2 fs-sm">
-                                                <span>Token ID</span>
-                                                <div><a class="text-decoration-none" href="#"><span class="text-body">8508550793340827...</span><i
-                                                        class="ci-copy ms-3 text-accent"></i></a></div>
-                                            </li>
-                                            <li class="d-flex flex-sm-row flex-column align-items-sm-center justify-content-between mb-2 fs-sm">
-                                                <span>Token Standard</span>
-                                                <div><span class="text-body">ERC-1155</span></div>
-                                            </li>
-                                            <li class="d-flex flex-sm-row flex-column align-items-sm-center justify-content-between mb-2 fs-sm">
-                                                <span>Blockchain</span>
-                                                <div><span class="text-body">Ethereum</span></div>
-                                            </li>
-                                            <li class="d-flex flex-sm-row flex-column align-items-sm-center justify-content-between mb-2 fs-sm">
-                                                <span>Metadata</span>
-                                                <div><span class="text-body">Editable</span></div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <!-- Properties-->
-                                    <div class="tab-pane fade" id="properties" role="tabpanel">
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="card h-100">
-                                                    <div class="card-body p-3">
-                                                        <h6 class=" fw-normal text-muted">{{ product.description }}</h6>
-                                                    </div>
-                                                </div>
-                                            </div>
+                            <form action="{% url 'cart_add' product.id %}" method="POST">
+                                {% csrf_token %}
+                                <!-- Buy-->
+                                <div class="row row-cols-sm-2 row-cols-1 g-sm-4 g-3 mb-4">
+                                    {% if product.inventory != 0 %}
+                                        <div class="col">
+                                            <input class="form-control" type="number" name="quantity"
+                                                   placeholder="{% trans 'quantity' %}" id="quantity1" min="1"
+                                                   max="100" value="{{ item.quantity }}">
                                         </div>
-                                    </div>
+                                        <div class="col">
+                                            <label class="form-label" for="quantity1"></label>
+                                            <button class="col btn btn-primary btn-shadow me-3 mb-3" type="submit">
+                                                {% trans 'Add to Cart' %}<i class="ci-cart fs-lg me-2"></i>
+                                            </button>
+                                        </div>
+                                    {% endif %}
                                 </div>
-                            </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item"><a class="nav-link p-4" data-bs-toggle="tab" role="tab">
+                                {% trans 'Product description' %}</a></li>
+                        </ul>
+                        <div class="tab-content pt-2">
+                            {{ product.description|safe }}
                         </div>
                     </div>
                 </div>
@@ -141,43 +113,9 @@
     <!-- Recent products-->
     <section class="container mb-5 pb-md-4">
         <div class="d-flex flex-sm-row flex-column align-items-sm-center justify-content-sm-between mb-sm-4 mb-3">
-            <h2 class="h3 mb-sm-0">More from this collection</h2><a class="btn btn-outline-accent ms-sm-3"
-                                                                    href="nft-catalog-v2.html">View collection<i
-                class="ci-arrow-right ms-2"></i></a>
-        </div>
-        <!-- Product carousel-->
-        <div class="tns-carousel tns-controls-static tns-controls-outside mx-xl-n4 mx-n2 px-xl-4 px-0">
-            <div class="tns-carousel-inner row gx-xl-0 gx-3 mx-0"
-                 data-carousel-options="{&quot;items&quot;: 2, &quot;nav&quot;: true, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1,&quot;controls&quot;: false, &quot;gutter&quot;: 0},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3}, &quot;1100&quot;:{&quot;items&quot;:4}, &quot;1278&quot;:{&quot;controls&quot;: true, &quot;gutter&quot;: 30}}}">
-                <!-- Product item-->
-                <div class="col py-3">
-                    <article class="card h-100 border-0 shadow">
-                        <div class="card-img-top position-relative overflow-hidden"><a class="d-block"
-                                                                                       href="nft-single-buy.html"><img
-                                src="img/nft/catalog/05.jpg" alt="Product image"></a>
-                            <!-- Wishlist button-->
-                            <button class="btn-wishlist btn-sm position-absolute top-0 end-0" type="button"
-                                    data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Favorites"
-                                    style="margin: 12px;"><i class="ci-heart"></i></button>
-                        </div>
-                        <div class="card-body">
-                            <h3 class="product-title mb-2 fs-base"><a class="d-block text-truncate"
-                                                                      href="nft-single-buy.html">Aesthetic art
-                                collage</a></h3><span class="fs-sm text-muted">Reserve price:</span>
-                            <div class="d-flex align-items-center flex-wrap">
-                                <h4 class="mt-1 mb-0 fs-base text-darker">0.6 ETH</h4><span
-                                    class="mt-1 ms-1 fs-xs text-muted">(≈ $ 2,400.65)</span>
-                            </div>
-                        </div>
-                        <div class="card-footer mt-n1 py-0 border-0">
-                            <div class="d-flex align-items-center position-relative mb-1 py-3 border-top"><img
-                                    class="me-2 rounded-circle" src="img/nft/catalog/avatars/05.png" width="32"
-                                    alt="Avatar"><a class="nav-link-style fs-sm stretched-link" href="nft-vendor.html">@Sharan_Pagadala</a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
+            <h2 class="h3 mb-sm-0">{% trans 'more products' %}</h2><a dir="ltr" class="btn btn-outline-accent ms-sm-3"
+                                                                      href="{% url 'products_list' %}">{% trans 'View products' %}
+            <i class="ci-arrow-right ms-2"></i></a>
         </div>
     </section>
 
@@ -185,8 +123,8 @@
     <section class="container mb-4 mb-lg-5">
         <!-- Nav tabs-->
         <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item"><a class="nav-link p-4" href="#comments" data-bs-toggle="tab" role="tab">
-                Comments({{ product.comments.count }})</a></li>
+            <li class="nav-item"><a class="nav-link p-4" data-bs-toggle="tab" role="tab">
+                {% trans 'Comments' %}({{ product.comments.count }})</a></li>
         </ul>
         <div class="tab-content pt-2">
             <!-- Comments tab-->
@@ -194,46 +132,37 @@
                 <div class="row">
                     <div class="col-lg-8">
                         {% for comment in product.comments.all %}
-                        <!-- comment-->
-                        <div class="d-flex align-items-start py-4 border-bottom">
-                            <div class="ps-3">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <h6 class="fs-md mb-0">{{ comment.author.username }}</h6><a class="nav-link-style fs-sm fw-medium"
-                                                                                href="#"><i class="ci-reply me-2"></i>Reply</a>
+                            <!-- comment-->
+                            <div class="d-flex align-items-start py-4 border-bottom">
+                                <div class="ps-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h6 class="fs-md mb-0">{{ comment.author.username }}</h6>
+                                    </div>
+                                    <p class="fs-md mb-1">{{ comment.body }}</p><span class="fs-ms text-muted">
+                                    <i class="ci-time align-middle me-2"></i> {{ comment.datetime_created|to_jalali:'%Y/%m/%d _ %H:%M:%S'|translate_number }}</span>
                                 </div>
-                                <p class="fs-md mb-1">{{ comment.body }}</p><span class="fs-ms text-muted"><i
-                                    class="ci-time align-middle me-2"></i>{{ datetime_created }}</span>
-                                <!-- comment reply-->
-                                <div class="d-flex align-items-start border-top pt-4 mt-4">
-                                    <div class="ps-3">
-                                        <div class="d-flex justify-content-between align-items-center mb-2">
-                                            <h6 class="fs-md mb-0">Sara Palson</h6>
-                                        </div>
-                                        <p class="fs-md mb-1">Egestas sed sed risus pretium quam vulputate dignissim. A
-                                            diam sollicitudin tempor id eu nisl. Ut porttitor leo a diam. Bibendum at
-                                            varius vel pharetra vel turpis nunc.</p><span class="fs-ms text-muted"><i
-                                            class="ci-time align-middle me-2"></i>Sep 13, 2019</span>
+                            </div>
+                        {% endfor %}
+                        {% if user.is_authenticated %}
+                            <!-- Post comment form-->
+                            <div class="card border-0 shadow my-2">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-start">
+                                        <form action="{% url 'comment_create' product.id %}" method="POST"
+                                              class="needs-validation w-100 ms-3" novalidate>
+                                            {% csrf_token %}
+                                            <div class="mb-3">
+                                            <textarea class="form-control" rows="4"
+                                                      placeholder="{% trans 'Write comment...' %}"
+                                                      name="body" required></textarea>
+                                            </div>
+                                            <button class="btn btn-primary btn-sm"
+                                                    type="submit">{% trans 'Post comment' %}</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        {% endfor %}
-                        <!-- Post comment form-->
-                        <div class="card border-0 shadow my-2">
-                            <div class="card-body">
-                                <div class="d-flex align-items-start">
-                                    <form action="{% url 'comment_create' product_id %}" class="needs-validation w-100 ms-3" novalidate>
-                                        {% csrf_token %}
-                                        <div class="mb-3">
-                                            <textarea class="form-control" rows="4" placeholder="Write comment..."
-                                                      required></textarea>
-                                            <div class="invalid-feedback">Please write your comment.</div>
-                                        </div>
-                                        <button class="btn btn-primary btn-sm" type="submit">Post comment</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>

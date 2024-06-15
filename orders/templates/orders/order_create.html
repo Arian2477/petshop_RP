@@ -1,0 +1,168 @@
+{% extends '_base.html' %}
+
+{% load static %}
+{% load i18n %}
+{% load jalali_tags %}
+{% load persian_translation_tags %}
+{% load humanize %}
+
+{% block title %}{% trans 'Chekout Order' %}{% endblock title %}
+
+{% block content %}
+
+    <!-- Page Title-->
+    <div class="page-title-overlap bg-accent pt-4">
+        <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
+            <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
+                        <li dir="ltr" class="breadcrumb-item"><a class="text-nowrap" href="{% url 'home' %}">
+                            <i class="ci-home"></i>{% trans 'Home' %}</a></li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
+                <h1 class="h3 text-light mb-0">{% trans 'Checkout' %}</h1>
+            </div>
+        </div>
+    </div>
+    <div dir="ltr" class="container mb-5 pb-3">
+        <div class="bg-light shadow-lg rounded-3 overflow-hidden">
+            <div class="row">
+                <!-- Content-->
+                <section class="col-lg-8 pt-2 pt-lg-4 pb-4 mb-3">
+                    <div class="pt-2 px-4 pe-lg-0 ps-xl-5">
+                        <!-- Title-->
+                        <h2 class="h6 border-bottom pb-3 mb-3">{% trans 'Billing details' %}</h2>
+                        <!-- Billing detail-->
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            {% if form.errors %}
+                                <div class="alert alert-danger">
+                                    {{ form.errors }}
+                                </div>
+                            {% endif %}
+                            <div class="row pb-4 gx-4 gy-3">
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="mc-fn">{% trans 'First name' %} <span
+                                            class='text-danger'>*</span></label>
+                                    <input class="form-control" type="text" name="first_name" id="mc-fn">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="mc-ln">{% trans 'Last name' %} <span
+                                            class='text-danger'>*</span></label>
+                                    <input class="form-control" type="text" name="last_name" id="mc-ln">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label" for="mc-email">{% trans 'Phone number' %}<span
+                                            class='text-danger'>*</span></label>
+                                    <input class="form-control" type="text" name="phone_number" id="mc-email">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="mc-fn">{% trans 'Country' %} <span
+                                            class='text-danger'>*</span></label>
+                                    <input class="form-control" type="text" name="country" id="mc-fn">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="mc-ln">{% trans 'City' %} <span
+                                            class='text-danger'>*</span></label>
+                                    <input class="form-control" type="text" name="city" id="mc-ln">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label" for="mc-email">{% trans 'Address' %}<span
+                                            class='text-danger'>*</span></label>
+                                    <input class="form-control" type="text" name="address" value="" id="mc-email">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label" for="mc-email">{% trans 'Order Note' %}</label>
+                                    <input class="form-control" type="text" id="mc-email">
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary d-block w-100"
+                                            type="submit">{% trans 'Payment' %}</button>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- Order preview on mobile (screens small than 991px)-->
+                        <div class="widget mb-3 d-lg-none">
+                            <h2 class="widget-title">{% trans 'Order summary' %}</h2>
+                            {% for item in cart %}
+                                <div class="d-flex align-items-center pb-2 border-bottom">
+                                    <a class="d-block flex-shrink-0 me-2" href="{{ item.product_obj.get_absolute_url }}">
+                                        {% if item.product_obj.image %}
+                                    <img class="rounded-1" src="{{ item.product_obj.image.url }}" width="64" alt="Product">
+                                        {% endif %}
+                                    </a>
+                                    <div class="ps-1">
+                                        <h6 class="widget-product-title"><a
+                                                href="{{ item.product_obj.get_absolute_url }}">
+                                            {{ item.product_obj.title }}</a></h6>
+                                        <div class="widget-product-meta"><span class="text-accent border-end pe-2 me-2">
+                                        {{ item.product_obj.price|intcomma:False|translate_number }} {% trans '$' %}</span><span
+                                                class="fs-xs text-muted">{% trans 'quantity' %} : {{ item.quantity|translate_number }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <ul class="list-unstyled fs-sm py-3">
+                                <li class="d-flex justify-content-between align-items-center"><span
+                                        class="me-2">{% trans 'Subtotal' %}:</span><span
+                                        class="text-end">{{ cart.get_total_price|intcomma:False|translate_number }} {% trans '$' %}
+                                </span></li>
+                                <li class="d-flex justify-content-between align-items-center"><span
+                                        class="me-2">{% trans 'Shipping cost' %}:</span><span
+                                        class="text-end">$10.<small>45</small></span>
+                                </li>
+                                <li class="d-flex justify-content-between align-items-center fs-base"><span
+                                        class="me-2">{% trans 'Total' %}:</span><span
+                                        class="text-end">$69.<small>42</small></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <!-- Sidebar-->
+                <!-- Order preview on desktop (screens larger than 991px)-->
+                <aside class="col-lg-4 d-none d-lg-block ps-xl-5">
+                    <hr class="d-lg-none">
+                    <div class="p-4 h-100 ms-auto border-start">
+                        <div class="widget px-lg-2 py-2 mb-3">
+                            <h2 class="widget-title text-center">{% trans 'Order summary' %}</h2>
+                            {% for item in cart %}
+                                <div class="d-flex align-items-center pb-2 border-bottom">
+                                    <a class="d-block flex-shrink-0 me-2" href="{{ item.product_obj.get_absolute_url }}">
+                                        {% if item.product_obj.image %}
+                                        <img class="rounded-1" src="{{ item.product_obj.image.url }}" width="64" alt="Product">
+                                        {% endif %}
+                                    </a>
+                                    <div class="ps-1">
+                                        <h6 class="widget-product-title"><a
+                                                href="{{ item.product_obj.get_absolute_url }}">
+                                            {{ item.product_obj.title }}</a></h6>
+                                        <div dir="rtl" class="widget-product-meta"><span class="fs-xs text-muted">{% trans 'quantity' %} : {{ item.quantity|translate_number }}</span>
+                                            <span class="text-accent border-end pe-2 me-2">
+                                        {{ item.product_obj.price|intcomma:False|translate_number }} {% trans '$' %} </span>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <ul dir="rtl" class="list-unstyled fs-sm pt-3 pb-2 border-bottom">
+                                <li class="d-flex justify-content-between align-items-center"><span
+                                        class="me-2">{% trans 'Subtotal' %}:</span><span
+                                        class="text-end">{{ cart.get_total_price|intcomma:False|translate_number }} {% trans '$' %} </span>
+                                </li>
+                                <li class="d-flex justify-content-between align-items-center"><span
+                                        class="me-2">{% trans 'Shipping cost' %}:</span><span
+                                        class="text-end">$9.<small>30</small></span>
+                                </li>
+                            </ul>
+                            <h3 class="fw-normal text-center my-4">{% trans 'Total' %} : $65.<small>30</small></h3>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

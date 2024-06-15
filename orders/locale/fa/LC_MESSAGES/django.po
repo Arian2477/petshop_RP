@@ -1,0 +1,130 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-02 21:57-0800\n"
+"PO-Revision-Date: 2024-06-05 03:22+0330\n"
+"Last-Translator:   <arian.rj7724@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Translated-Using: django-rosetta 0.10.0\n"
+
+#: .\models.py:7
+msgid "User"
+msgstr "کاربر"
+
+#: .\models.py:8
+msgid "Is Paid?"
+msgstr "پرداخت شده؟"
+
+#: .\models.py:10
+msgid "First Name"
+msgstr "نام"
+
+#: .\models.py:11
+msgid "Last Name"
+msgstr "نام خانوادگی"
+
+#: .\models.py:12
+msgid "Phone Number"
+msgstr "شماره موبایل"
+
+#: .\models.py:13 .\templates\orders\order_create.html:92
+msgid "Address"
+msgstr "آدرس"
+
+#: .\models.py:15
+msgid "Order Notes"
+msgstr "توضیحات سفارش"
+
+#: .\models.py:21
+#, fuzzy
+msgid "Created"
+msgstr "ساخته شده"
+
+#: .\models.py:22
+msgid "Modified"
+msgstr "اصلاح شده"
+
+#: .\templates\orders\order_create.html:9
+#, fuzzy
+msgid "Chekout Order"
+msgstr "پیش سفارش"
+
+#: .\templates\orders\order_create.html:20
+msgid "Home"
+msgstr "خانه"
+
+#: .\templates\orders\order_create.html:25
+msgid "Checkout"
+msgstr "سفارش"
+
+#: .\templates\orders\order_create.html:36
+msgid "Billing details"
+msgstr "جزییات حساب کاربری"
+
+#: .\templates\orders\order_create.html:47
+msgid "First name"
+msgstr "نام"
+
+#: .\templates\orders\order_create.html:52
+msgid "Last name"
+msgstr "نام خانوادگی"
+
+#: .\templates\orders\order_create.html:57
+msgid "Phone number"
+msgstr "شماره موبایل"
+
+#: .\templates\orders\order_create.html:62
+msgid "Country"
+msgstr "کشور"
+
+#: .\templates\orders\order_create.html:77
+msgid "City"
+msgstr "شهر"
+
+#: .\templates\orders\order_create.html:97
+msgid "Order Note"
+msgstr "توضیحات سفارش"
+
+#: .\templates\orders\order_create.html:101
+msgid "Submit"
+msgstr "ارسال"
+
+#: .\templates\orders\order_create.html:107
+#: .\templates\orders\order_create.html:141
+msgid "Order summary"
+msgstr "خلاصه سفارش"
+
+#: .\templates\orders\order_create.html:118
+msgid "quantity"
+msgstr "تعداد"
+
+#: .\templates\orders\order_create.html:123
+#: .\templates\orders\order_create.html:157
+msgid "Subtotal"
+msgstr "مجموع"
+
+#: .\templates\orders\order_create.html:126
+#: .\templates\orders\order_create.html:160
+msgid "Shipping cost"
+msgstr "هزینه ارسال"
+
+#: .\templates\orders\order_create.html:129
+#: .\templates\orders\order_create.html:163
+msgid "Total"
+msgstr "مجموع کل"
+
+#: .\templates\orders\order_create.html:164
+msgid "Payment"
+msgstr "پرداخت"
